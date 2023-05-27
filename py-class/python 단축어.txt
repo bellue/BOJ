@@ -1,0 +1,8 @@
+ctrl+alt+N = 커서가 있는 줄 RUN
+ctrl+alt+M = 코드종료
+ctrl+shift+c = 터미널로 컴파일
+exit() = 프로그램 강제종료
+import sys
+input=sys.stdin.readline
+ = 파이썬 빠른입력
+

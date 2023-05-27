@@ -21,6 +21,7 @@ int main() {
 
     sort(p.begin(),p.end());
     
+    string ret;
 
     cin >> m;
 
