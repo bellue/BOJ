@@ -1,3 +1,3 @@
-# BOJ
+sf# BOJ
 # https://velog.io/@profile_exe/CMake-environment-configuration
-# ctrl + alt + c 로 빌드
+# ctrl + shift + b 로 빌드
