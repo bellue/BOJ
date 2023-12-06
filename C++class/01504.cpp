@@ -1,33 +1,38 @@
-//https://m.blog.naver.com/ndb796/221234424646 다익스트라(with priority queue)
-
 #include <iostream>
 #include <algorithm>
 #include <vector>
 #include <queue>
 
-
 using namespace std;
 
 const int N = 1003;
+const int INF = 1e9;
 
-vector<pair<int, int>> v[N];
 int d[N];
+vector<pair<int, int>> v[N];
+
 
 void dijkstra(int start) {
-
+    priority_queue<pair<int,int>> pq;
+    int nownode = start;
+    int nowdist = 0;
+    pq.push_back(make_pair(nowdist,nownode));
+    
+    while(!pq.empty()) {
+    }
+    
 }
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-
     int nodenum, edgenum; cin >> nodenum >> edgenum;
     for (int i = 0; i < edgenum; i ++) {
         int node1, node2, dist; cin >> node1 >> node2 >> dist;
-        v[node1].push_back(make_pair(node2, dist));
+        v[node1].push_back(make_pair(dist,node2));
     }
-    int esnode1, esnode2; cin >> esnode1 >> esnode2;
-
-
+    
+    int enode1, enode2; cin >> enode1 >> enode2;
+    
+    dijkstra(1);
+    
+    
 }
