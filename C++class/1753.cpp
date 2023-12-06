@@ -17,22 +17,22 @@ int d[N];
 void dijkstra(int start) {
     priority_queue<pair<int,int>> pq;
     d[start] = 0;
-    pq.push(make_pair(start,0));
+    pq.push(make_pair(0,start));
     
     while(!pq.empty()) {
-        int nownode = pq.top().first;
-        int nowdist = -pq.top().second;
+        int nownode = pq.top().second;
+        int nowdist = -pq.top().first;
         pq.pop();
         
         if(d[nownode] < nowdist) continue;
         
         for (int i = 0; i < v[nownode].size(); i ++) {
-            int next = v[nownode][i].first;
-            int nextdist = v[nownode][i].second + nowdist;
+            int next = v[nownode][i].second;
+            int nextdist = v[nownode][i].first + nowdist;
         
             if(d[next] > nextdist) {
                 d[next] = nextdist;
-                pq.push(make_pair(next,nextdist));
+                pq.push(make_pair(-nextdist,next));
             }
         }
         
@@ -49,15 +49,15 @@ int main() {
     int nodenum, edgenum, start; cin >> nodenum >> edgenum >> start;
     for (int i = 0; i < edgenum; i ++) {
         int node1, node2, dist; cin >> node1 >> node2 >> dist;
-        v[node1].push_back(make_pair(node2, dist));
+        v[node1].push_back(make_pair(dist,node2));
     }
-    for (int i = 0; i < nodenum; i ++) {
+    for (int i = 0; i <= nodenum; i ++) {
         d[i] = INF;
     }
     
     dijkstra(start);
     
-    for (int i = 0; i < nodenum; i ++) {
+    for (int i = 1; i <= nodenum; i ++) {
         if(d[i] == INF) cout << "INF" << '\n';
         else cout << d[i] << '\n';
     }
