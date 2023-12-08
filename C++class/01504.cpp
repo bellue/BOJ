@@ -8,7 +8,7 @@
 using namespace std;
 
 const int N = 1003;
-const int INF = 1e9;
+const int INF = 98765432;
 int enode1, enode2;
 long dist1, dist2, nodenum;
 
