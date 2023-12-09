@@ -11,6 +11,8 @@ const int INF = 1e9;
 vector<pair<int, pair<int, int>>> v;
 int d[N];
 int nodenum, edgenum;
+int pre[N];
+bool visited[N];
 
 int bellman_ford(int start) {
     d[start] = 0;
@@ -23,19 +25,49 @@ int bellman_ford(int start) {
 
             if(d[from] == INF) continue;
 
+            if(d[to] > d[from] + cost) {
+                d[to] = d[from] + cost;
+
+                if(i == nodenum) return true;
+            }
             
         }
     }
+    return false;
 }
 
 int main() {
     cin >> nodenum >> edgenum;
-
+    vector<int> way[N];
     for (int i = 0; i < edgenum; i ++) {
         int from, to, cost; cin >> from >> to >> cost;
         v.push_back({from,{to,-cost}});
+        way[to].push_back(from);
+    
     }
 
     fill(d,d+N,INF);
+    int cycle = bellman_ford(1);
+    
+    queue<int> q;
+    q.push(nodenum);
+    //여기부터
+    while(q.empty()) {
+        int a = q.front();
+        q.pop();
+        visited[a] = 1;
+        for (int i = 0; i < way[a].size(); i ++) {
+            q.push(way[a][i]);
+            visited[way[a][i]];
+        }
+
+    }
+    
+    if(cycle) {
+        cout << "-1";
+        return 0;
+    }
+
+
 
 }
