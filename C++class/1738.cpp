@@ -1,3 +1,5 @@
+//https://blog.naver.com/kks227/220796963742 라이 벨만포드
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -27,8 +29,8 @@ int bellman_ford(int start) {
 
             if(d[to] > d[from] + cost) {
                 d[to] = d[from] + cost;
-
-                if(i == nodenum) return true;
+                pre[to] = from; // 마지막까지 갱신되므로
+                if(i == nodenum && visited[to]) return true;
             }
             
         }
@@ -47,26 +49,34 @@ int main() {
     }
 
     fill(d,d+N,INF);
-    int cycle = bellman_ford(1);
     
     queue<int> q;
     q.push(nodenum);
-    //여기부터
-    while(q.empty()) {
+    while(!q.empty()) {
         int a = q.front();
         q.pop();
         visited[a] = 1;
         for (int i = 0; i < way[a].size(); i ++) {
-            q.push(way[a][i]);
-            visited[way[a][i]];
+            if(!visited[way[a][i]]){ // 이 if문 없을 때도 정상작동 하는지 확인해보기 (내가 생각하는 해당 if문의 역할은 여러가지 길 중 하나의 길만 찾아주는것)
+                q.push(way[a][i]);
+                visited[way[a][i]] = 1;
+            }
         }
-
     }
     
+    int cycle = bellman_ford(1);
     if(cycle) {
         cout << "-1";
         return 0;
     }
+    vector<int> res;
+    int k = nodenum;
+    while(k >= 1) {
+        res.push_back(k);
+        k = pre[k];
+    }
+    reverse(res.begin(), res.end());
+    for(auto &x : res) cout << x << " ";
 
 
 
