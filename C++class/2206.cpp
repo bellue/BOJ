@@ -8,8 +8,14 @@ using namespace std;
 const int N = 1003;
 
 int Map[N][N];
-bool visited[N][N];
+bool visited[N][N][2];
 int n, m;
+
+int bfs() {
+    priority_queue<pair<pair<int,int>,pair<int,int>>> q;
+
+    
+}
 
 int main() {
     cin >> n >> m;
